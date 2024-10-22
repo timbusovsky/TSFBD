@@ -23,7 +23,8 @@ public class JdbcLyricDao implements LyricDao {
     private final String sqlId = "SELECT lyrics.line, lyrics.line_id, song.song_name, album.album_name, song.song_id FROM lyrics " +
             "JOIN song ON song.song_id = lyrics.song_id " +
             "JOIN album ON album.album_id = song.album_id " +
-            "WHERE song.song_id = ?;";
+            "WHERE song.song_id = ? " +
+            "ORDER BY lyrics.line_id ASC;";
 
     public JdbcLyricDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
